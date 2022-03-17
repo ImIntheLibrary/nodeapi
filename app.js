@@ -20,8 +20,9 @@ mongoose.connection.on('error', err => {
 const postRoutes = require('./routes/post');
 
 
-//middleware - DO NOT CHANGE ORDER
+//middleware - DO NOT CHANGE
 app.use(morgan('dev'));
+
 app.use(bodyParser.json())
 app.use("/", postRoutes);
 app.use(validationResult);
