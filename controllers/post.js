@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 
 exports.getPosts = (req, res) => {
-	//res.send("hello  world from node js");
+	//handle GET requests
 	const posts = Post.find().select("_id title body")
 	.then(posts => {
 		res.status(200).json({posts});
@@ -11,6 +11,7 @@ exports.getPosts = (req, res) => {
 };
 
 exports.createPost = (req, res) => {
+	//'create' post.
 	const post = new Post(req.body);
 	console.log("CREATING POST", post);
 	console.log("CREATING POST: ", req.body);

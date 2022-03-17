@@ -4,8 +4,9 @@ const validator = require('../validator')
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
-
+//get posts
 router.get("/", postController.getPosts);
+//error validation
 router.post("/post",
 	[check('title', "Write a title").notEmpty(),
 	check('title', 'Title must be 4-150 characters').isLength({
@@ -23,7 +24,6 @@ router.post("/post",
 	(req, res, next) => {
 		const errors = validationResult(req);
 		//if error show the first one has they happen
-		//console.log("running", res.status(400).json(errors.array().firstError))
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array().map(error => error.msg)[0] });
 		}
@@ -35,6 +35,8 @@ router.post("/post",
 	}
 }
 	]);
+
+	//send post
 router.post("/post", postController.createPost);
 
 module.exports = router;
