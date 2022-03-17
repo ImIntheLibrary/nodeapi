@@ -7,12 +7,6 @@ const bodyParser = require('body-parser');
 const {check, validationResult} = require('express-validator');
 dotenv.config();
 
-/*app.get("/", (req, res) => {
-	res.send("hello  world from node js")
-});
-*/
-
-//db
 
 mongoose.connect(process.env.MONGO_URI).then(() => {console.log("Espresso Ordered!")})
 
@@ -25,17 +19,9 @@ mongoose.connection.on('error', err => {
 //bring in routes
 const postRoutes = require('./routes/post');
 
-/*
-const myOwnMiddleware = (req, res, next) => {
-	console.log("drink more cofffeeee");
-	next();
-};
-*/
 
-//middleware
+//middleware - DO NOT CHANGE ORDER
 app.use(morgan('dev'));
-//app.use(myOwnMiddleware); 
-
 app.use(bodyParser.json())
 app.use("/", postRoutes);
 app.use(validationResult);

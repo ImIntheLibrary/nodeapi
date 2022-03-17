@@ -6,15 +6,16 @@ const { check, validationResult } = require('express-validator');
 const router = express.Router();
 //get posts
 router.get("/", postController.getPosts);
-//error validation
+//error validation - yes, this is not the ideal way to do it. This is a patch change because of shift to V
+//6 of express-validator because I didn't really have time to look over the library.
 router.post("/post",
+	//checks - these were arbitrary. Some good thigns to check would be for numbers or dates.
 	[check('title', "Write a title").notEmpty(),
 	check('title', 'Title must be 4-150 characters').isLength({
 		min: 4,
 		max: 150
 	}),
 
-	//eq.checkBody('greetings').isLength({min: 1}) to await check('greetings').notEmpty().run(req)
 	check('body', "Write a body").notEmpty(),
 	check('body', 'Body must be 4-150 characters').isLength({
 		min: 4,
