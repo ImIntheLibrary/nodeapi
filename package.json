@@ -1,4 +1,4 @@
-{
+{ 
   "name": "nodeapi",
   "version": "1.0.0",
   "description": "",
@@ -20,5 +20,9 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
+  },
+  "engines": {
+    "node": "17.6.0"
   }
+
 }
